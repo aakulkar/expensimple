@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+		<title> ExSimplifier </title> 
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/css/jquery.mobile-1.2.0.min.css">
+		<link rel="stylesheet" href="/css/themes/mytheme.min.css"/>
+		<link rel="stylesheet" href="/css/themes/jquery.mobile.structure-1.2.0.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/term.css">
+		<link rel="stylesheet" href="/autocomplete/better-autocomplete.css">
+		
+		<script src="/js/jq/jquery-1.8.2.min.js"> </script>
+		<script src="/js/jq/addTappableJQPlugin.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/cordova/cordova-2.1.0.android.js"></script>
+		<script type="text/javascript" src="/js/camera.js"></script>
+		<script type="text/javascript" src="/autocomplete/jquery.better-autocomplete.js"></script>
+		<script type="text/javascript" src=
+			'https://www.google.com/jsapi?autoload=
+				{"modules":
+					[{	
+						"name":"visualization",
+						"version":"1",
+						"packages":["corechart"]
+					}]
+				}
+			'>
+		</script>
+		<script type="text/javascript" src="/js/graphs.js"></script>
+		<script type="text/javascript" src="/js/term.js"></script>
+		<script type="text/javascript" src="/js/MainPage.js"></script>
+		<script type="text/javascript" src="/js/jq/jquery.mobile-1.2.0.min.js"></script>
+		
+		<script>
+        	window.onload = function(){
+         	   new App();
+       		}
+   	    </script>
+		
+	</head> 
+
+	<body>
+		<!-- Recent Expenses Page -->
+		<div data-role="page" data-title="Recent Expenses" id="recentExpenses">
+			<!-- Header -->
+			<div data-role="header">
+				<h1>Expenses</h1>
+				<a href="#" class="logoutButton ui-btn-right" data-role="button" data-corners="false">
+					<img src="/img/logout1.svg" width="24" height="16"> </img> 
+				</a>
+			</div>
+
+			<!-- Body -->
+			<div data-role="content">
+				<div>
+           			<a id="viewAllButton" data-role="button" data-theme="a"> View All </a>
+       			</div>
+				<ul data-role="listview" id="expenseList" data-theme="d" data-divider-theme="d">
+
+				</ul>
+			</div>
+
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" >
+					<ul>
+						<li><a href="#recentExpenses" data-icon="home" class="ui-btn-active ui-state-persist" data-transition="fade">Expenses</a></li>
+						<li><a href="#addExpense" data-icon="plus" data-transition="fade">Create </a></li>
+						<li><a href="#filteredExpenses" data-icon="search" data-transition="fade">Filter</a></li>
+					</ul>
+				</div><!-- navbar -->
+			</div>
+		</div>
+
+		<!-- Add Expense Page -->
+		<div data-role="page" data-title="Add Expense" id="addExpense">
+			<!-- Header -->
+			<div data-role="header">
+				<h1>Create Expense</h1>
+				<a href="#" class="logoutButton ui-btn-right" data-role="button" data-corners="false">
+					<img src="/img/logout1.svg" width="24" height="16"> </img> 
+				</a>
+			</div>
+
+			<!-- Body -->
+			<div data-role="content">
+				<div id="expenseErrorList"></div>
+				<button id="takePhotoButton" onclick="captureImage();">
+						<img src="/img/camera.svg" width="50" height="37"> </img>
+				</button>
+				<form id="addExpenseForm" data-ajax="false">
+					<div id="myphoto"></div>
+					<label for="expenseTitle">Expense Name</label>
+					<input type="text" id="expenseTitle" placeholder="Enter a name for the expense"/>
+
+					<label for="addDate">Date</label>
+					<input type="date" id="addDate"/>
+
+					<label for="addTime">Time</label>
+					<input type="time" id="addTime"/>
+
+					<label for="addAmount">Amount</label>
+					<input type="number" id="addAmount" min="0" placeholder="Enter an amount for the expense"/>
+
+					<label for="addTags">Tags</label>
+					<input type="text" id="addTags" placeholder="Enter tags for the expense"/>
+
+					<div id="addedTags"></div>
+
+					<input id="addButton" type="submit" data-theme="a" value="Submit"/>
+				</form>
+			</div>
+
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" >
+					<ul>
+						<li><a href="#recentExpenses" data-icon="home" data-transition="fade">Expenses</a></li>
+						<li><a href="#addExpense" data-icon="plus" class="ui-btn-active ui-state-persist" data-transition="fade">Create </a></li>
+						<li><a href="#filteredExpenses" data-icon="search" data-transition="fade">Filter</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+		</div>
+
+
+		<!-- Filter Expenses Page -->
+		<div data-role="page" data-title="Filter Expenses" id="filteredExpenses">
+			<!-- Header -->
+			<div data-role="header">
+				<h1>Filter Expenses</h1>
+				<a href="#" class="logoutButton ui-btn-right" data-role="button" data-corners="false">
+					<img src="/img/logout1.svg" width="24" height="16"> </img> 
+				</a>
+			</div>
+
+			<!-- Body -->
+			<div data-role="content">
+				<h2>Filter By Date</h2>
+				<label for="fromDate">Start Date</label>
+				<input type="date" id="fromDate" placeholder="Start date"/>
+
+				<label for="toDate">End Date</label>
+				<input type="date" id="toDate" placeholder="End date" />
+				<button id="filterWithPeriodButton">Filter</button>
+
+				<br><br>
+
+				<h2>Filter By Tag</h2>
+				<input type="text" id="filteringTags" placeholder="Tag list" />
+				<div id="selectedTags">Selected Tags: </div>
+				<button id="filterWithTagButton">Filter</button>
+				<div id="pieChart"></div>
+				<div id="barChart"></div>
+			</div>
+
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" >
+					<ul>
+						<li><a href="#recentExpenses" data-icon="home" data-transition="fade">Expenses</a></li>
+						<li><a href="#addExpense" data-icon="plus" data-transition="fade">Create </a></li>
+						<li><a href="#filteredExpenses" data-icon="search" class="ui-btn-active ui-state-persist" data-transition="fade">Filter</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+		</div>
+
+		<div data-role="dialog" id="viewReceiptDialog">
+			<div data-role="header" data-theme="a">
+				<h1>Receipt Data</h1>
+			</div>
+			<div data-role="content" data-theme="d">
+				<div id='viewReceiptInfo'></div>
+			</div>
+		</div>
+		
+	</body>
+</html>

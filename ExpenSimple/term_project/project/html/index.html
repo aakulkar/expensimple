@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+		<title> ExSimplifier </title> 
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/jquery.mobile-1.2.0.min.css" />
+		<link rel="stylesheet" href="/css/themes/mytheme.min.css" />
+		<link rel="stylesheet" href="/css/themes/jquery.mobile.structure-1.2.0.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/term.css">
+
+		<script src="/js/jq/jquery-1.8.2.min.js"> </script>
+		<script src="/js/Login.js"></script>
+		<script src="/js/jq/addTappableJQPlugin.js"></script>
+		<script src="/js/jq/jquery.mobile-1.2.0.min.js"></script>
+		
+		<script>
+        	window.onload = function(){
+         	   new App();
+       		}
+   	    </script>
+	</head> 
+
+	<body> 
+		<!-- Sign In -->
+		<div data-role="page" data-title="Sign In" id="login">
+			<!-- Header -->
+			<div data-role="header">
+				<h1>Sign In</h1>
+			</div>
+
+			<!-- Body -->
+			<div data-role="content">
+				<ul id="loginErrorList"></ul>
+				<form id="loginform" data-ajax="false">
+		      		<input id="uname" type="email" name="uname" placeholder="Email"/>
+		  			<input id="pwd" type="password" name="pwd" placeholder="Password" />
+
+		  			<input id="loginButton" type="submit" value="Sign In" data-role="button" data-theme="a"/>
+      			<form>
+			</div>
+
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" >
+					<ul>
+						<li><a href="#login" class="ui-btn-active ui-state-persist" data-transition="fade">Sign In</a></li>
+						<li><a href="#register" data-transition="fade">Register</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+		</div>
+
+		<!-- Register -->
+		<div data-role="page" data-title="Register" id="register">
+			<!-- Header -->
+			<div data-role="header">
+				<h1>Register</h1>
+			</div>
+
+			<!-- Body -->
+			<div data-role="content">
+				<ul id="registerErrorList"></ul>
+				<form id="registerform" data-ajax="false">
+					<input type="text" name="first" id="fname" placeholder="First Name"/>
+					<input type="text" name="last" id="lname" placeholder="Last Name" />
+					<input type="email" name="regUname" id="regUname" placeholder="Email" />
+			    	<input id="regpwd" type="password" name="regpwd" placeholder="Password (at least 5 characters)" />
+			 		<input id="regpwd2" type="password" name="regpwd2" placeholder="Re-enter Password" />
+			 		
+			 		<input id="regButton" type="submit" value="Register" data-role="button" data-theme="a"/>
+		 		</form>
+			</div>
+
+			<!-- Footer -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar" >
+					<ul>
+						<li><a href="#login" data-transition="fade">Sign In</a></li>
+						<li><a href="#register" class="ui-btn-active ui-state-persist" data-transition="fade">Register</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+* {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-focus-ring-color:  transparent;
+	-webkit-user-select: none;
+    -moz-tap-highlight-color: rgbd(0, 0, 0, 0);
+    -moz-user-select: none;
+}
+
+input, button, a {
+	-webkit-user-select: text;
+	-moz-user-select: text;
+}
+
+.logoutButton {
+	background: #d25257 no-repeat scroll top right;
+	border-color: black;
+	display: block;
+}
+
+.logoutButton:hover {
+	background: #ad585b;
+	background-position: bottom right;
+	outline: none;
+	padding: 1px 1px 1px 1px;
+}
+
+#recentExpensesTable {
+	width: 100%;
+	border-width:0px; 
+	border-style:solid;
+}
+
+.data {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.ui-btn-inner {
+	white-space: normal !important;
+}
+
+#viewAllButton {
+	display: none;
+}
+
+#registerErrorList, #loginErrorList {
+	list-style-type: disc;
+	margin-left: 1.5%;
+}
+
+.error {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 2em;
+	color: red;
+}
+
+#viewReceiptInfo p{
+	margin-top: 10px;
+}
